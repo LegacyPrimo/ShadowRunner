@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="3" nextobjectid="12">
+ <tileset firstgid="1" source="PlatformerPackTileset.tsx"/>
+ <layer id="1" name="Ground" width="20" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,69,69,69,69,35,0,0,35,35,35,0,0,94,94,94,0,
+0,0,0,69,70,70,70,70,53,35,35,53,53,53,94,94,79,79,79,94,
+0,0,0,70,70,70,70,70,53,53,53,53,53,53,79,79,79,79,79,79,
+10,10,10,70,70,70,70,70,53,53,53,53,53,53,79,79,79,79,79,79,
+87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,
+87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,
+87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87,87
+</data>
+ </layer>
+ <objectgroup id="2" name="CollisionMask">
+  <object id="1" x="385.5" y="390.787" width="133.875" height="509.026"/>
+  <object id="2" x="7.0303" y="647.758" width="380" height="120"/>
+  <object id="4" x="514" y="259.758" width="632" height="124"/>
+  <object id="5" x="1150.97" y="384.667" width="254" height="112"/>
+  <object id="6" x="1408" y="274.848" width="376" height="128"/>
+  <object id="8" x="1798.06" y="380.606" width="254" height="114"/>
+  <object id="9" x="2048" y="254.667" width="378" height="128"/>
+  <object id="10" x="2430" y="377.576" width="130" height="114"/>
+ </objectgroup>
+</map>
