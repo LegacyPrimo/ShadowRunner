@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class SuperGaugeObject : MonoBehaviour
 {
+    public static SuperGaugeObject instance;
+
     [SerializeField] private Slider gaugeSlider;
     [SerializeField] private FloatValue deathCounter;
 
     public bool enableSuper;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        enableSuper = false;
         gaugeSlider.maxValue = deathCounter.initialValue;
         gaugeSlider.value = 0;
     }

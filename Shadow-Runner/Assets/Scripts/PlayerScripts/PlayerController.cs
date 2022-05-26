@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetFloat("moveX", 1);
         playerState = PlayerState.running;
         playerSpeed = playerSpeedValue.runtimeValue;
         playerJump = playerJumpValue.runtimeValue;
@@ -123,7 +124,6 @@ public class PlayerController : MonoBehaviour
         directionChange.x = Mathf.Round(directionChange.x);
         directionChange.y = Mathf.Round(directionChange.y);
         animator.SetFloat("moveX", directionChange.x);
-        animator.SetFloat("moveY", directionChange.y);
 
         if (directionChange != Vector3.zero)
         {
@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
     {
         directionChange.x = Mathf.Round(directionChange.x);
         directionChange.y = Mathf.Round(directionChange.y);
+
         animator.SetFloat("moveX", directionChange.x);
         animator.SetBool("isAttacking", true);
         StartCoroutine(DisableAttack());
