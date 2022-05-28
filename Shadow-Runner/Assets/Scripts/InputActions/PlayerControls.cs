@@ -53,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnableSuper"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a23469a-249a-481d-80c4-08fb29929758"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""JumpMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e0b2f2a-a302-4fae-ae16-697be2a14144"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""EnableSuper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -133,6 +153,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerMovement_JumpMovement = m_PlayerMovement.FindAction("JumpMovement", throwIfNotFound: true);
         m_PlayerMovement_SwordAttack = m_PlayerMovement.FindAction("SwordAttack", throwIfNotFound: true);
+        m_PlayerMovement_EnableSuper = m_PlayerMovement.FindAction("EnableSuper", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -195,6 +216,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Movement;
     private readonly InputAction m_PlayerMovement_JumpMovement;
     private readonly InputAction m_PlayerMovement_SwordAttack;
+    private readonly InputAction m_PlayerMovement_EnableSuper;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -202,6 +224,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputAction @JumpMovement => m_Wrapper.m_PlayerMovement_JumpMovement;
         public InputAction @SwordAttack => m_Wrapper.m_PlayerMovement_SwordAttack;
+        public InputAction @EnableSuper => m_Wrapper.m_PlayerMovement_EnableSuper;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -220,6 +243,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwordAttack.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSwordAttack;
+                @EnableSuper.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnEnableSuper;
+                @EnableSuper.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnEnableSuper;
+                @EnableSuper.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnEnableSuper;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -233,6 +259,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwordAttack.started += instance.OnSwordAttack;
                 @SwordAttack.performed += instance.OnSwordAttack;
                 @SwordAttack.canceled += instance.OnSwordAttack;
+                @EnableSuper.started += instance.OnEnableSuper;
+                @EnableSuper.performed += instance.OnEnableSuper;
+                @EnableSuper.canceled += instance.OnEnableSuper;
             }
         }
     }
@@ -251,5 +280,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJumpMovement(InputAction.CallbackContext context);
         void OnSwordAttack(InputAction.CallbackContext context);
+        void OnEnableSuper(InputAction.CallbackContext context);
     }
 }

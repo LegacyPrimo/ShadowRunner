@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player Health")]
     [SerializeField] private FloatValue playerDeathCounter;
 
+    [Header("Player Bool Checker")]
+    public bool superIsPressed;
+
 
     private void Awake()
     {
@@ -67,10 +70,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator.SetFloat("moveX", 1);
-        playerState = PlayerState.running;
+        playerState = PlayerState.idle;
         playerSpeed = playerSpeedValue.runtimeValue;
         playerJump = playerJumpValue.runtimeValue;
         playerPosition.startingPosition = transform.position;
+        superIsPressed = false;
 
     }
 
@@ -106,6 +110,11 @@ public class PlayerController : MonoBehaviour
         {
             EnableSwordAttack();
         }
+
+        if (inputActions.PlayerMovement.EnableSuper.WasPressedThisFrame()) 
+        {
+            superIsPressed = true;
+        }
     }
 
     #region Movement Methods
@@ -121,13 +130,14 @@ public class PlayerController : MonoBehaviour
     //Update the Movement through Fixed Update and Animation Procedures
     private void UpdateMovement() 
     {
-        directionChange.x = Mathf.Round(directionChange.x);
-        directionChange.y = Mathf.Round(directionChange.y);
-        animator.SetFloat("moveX", directionChange.x);
+        
 
         if (directionChange != Vector3.zero)
         {
             SetMovement();
+            directionChange.x = Mathf.Round(directionChange.x);
+            directionChange.y = Mathf.Round(directionChange.y);
+            animator.SetFloat("moveX", directionChange.x);
             animator.SetBool("isWalking", true);
         }
 

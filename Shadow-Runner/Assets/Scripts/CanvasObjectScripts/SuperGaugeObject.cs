@@ -10,6 +10,9 @@ public class SuperGaugeObject : MonoBehaviour
     [SerializeField] private Slider gaugeSlider;
     [SerializeField] private FloatValue deathCounter;
 
+    [SerializeField] private FloatValue startTimer;
+    [SerializeField] private float currentTime;
+
     public bool enableSuper;
 
     private void Awake()
@@ -23,21 +26,56 @@ public class SuperGaugeObject : MonoBehaviour
         enableSuper = false;
         gaugeSlider.maxValue = deathCounter.initialValue;
         gaugeSlider.value = 0;
+
+        ResetSuperGauge();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateDeathCounter();
+        EnableSuper();
+        UseSuperGauge();
+    }
 
-        if (gaugeSlider.value == gaugeSlider.maxValue) 
+    private void UpdateDeathCounter() 
+    {
+        gaugeSlider.value = deathCounter.runtimeValue;
+    }
+
+    private void ResetSuperGauge() 
+    {
+        currentTime = startTimer.initialValue;
+    }
+
+    private void EnableSuper() 
+    {
+        if (gaugeSlider.value == gaugeSlider.maxValue)
         {
             enableSuper = true;
         }
     }
 
-    void UpdateDeathCounter() 
+    private void UseSuperGauge() 
     {
-        gaugeSlider.value = deathCounter.runtimeValue;
+        if (enableSuper == true && PlayerController.instance.superIsPressed == true) 
+        {
+            currentTime -= 1 * Time.deltaTime;
+            gaugeSlider.value = currentTime;
+
+            if (currentTime <= 0)
+            {
+                deathCounter.runtimeValue = 0;
+                currentTime = 0;
+                gaugeSlider.value = 0;
+
+                if (currentTime == 0)
+                {
+                    gaugeSlider.value = 0;
+                    enableSuper = false;
+                }
+            }
+        }
+        
     }
 }

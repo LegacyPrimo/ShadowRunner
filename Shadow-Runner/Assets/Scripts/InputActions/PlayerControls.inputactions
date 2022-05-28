@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "EnableSuper",
+                    "type": "Button",
+                    "id": "9a23469a-249a-481d-80c4-08fb29929758",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -86,6 +95,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "JumpMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e0b2f2a-a302-4fae-ae16-697be2a14144",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "EnableSuper",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

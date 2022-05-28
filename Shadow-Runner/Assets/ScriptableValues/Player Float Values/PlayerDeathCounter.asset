@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba58fb949ab6254a860ec0091e28d3f, type: 3}
   m_Name: PlayerDeathCounter
   m_EditorClassIdentifier: 
-  initialValue: 5
-  runtimeValue: 0
+  initialValue: 10
+  runtimeValue: 10
