@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikesObject : MonoBehaviour
+public class SpikeObject : MonoBehaviour
 {
+    private SpikeParent spikeParent;
     [SerializeField] private FloatValue enemyDamage;
+
+    private void Awake()
+    {
+        spikeParent = GetComponentInParent<SpikeParent>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,9 +19,9 @@ public class SpikesObject : MonoBehaviour
             PlayerController.instance.CheckHealth(enemyDamage.runtimeValue);
         }
 
-        if (collision.collider.CompareTag("Player") && SuperGaugeObject.instance.enableSuper == true && PlayerController.instance.superIsPressed == true) 
+        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == true)
         {
-            SpikeParent.instance.ChangeSpikeStates();
+            spikeParent.ChangeSpikeStates();
         }
     }
 }

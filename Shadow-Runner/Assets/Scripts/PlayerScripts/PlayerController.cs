@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public enum PlayerState 
 {
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator.SetFloat("moveX", 1);
-        playerState = PlayerState.idle;
+        playerState = PlayerState.running;
         playerSpeed = playerSpeedValue.runtimeValue;
         playerJump = playerJumpValue.runtimeValue;
         playerPosition.startingPosition = transform.position;
@@ -111,9 +112,19 @@ public class PlayerController : MonoBehaviour
             EnableSwordAttack();
         }
 
-        if (inputActions.PlayerMovement.EnableSuper.WasPressedThisFrame()) 
+        if (inputActions.PlayerMovement.EnableSuper.WasPressedThisFrame() && SuperGaugeObject.instance.enableSuper == true) 
         {
             superIsPressed = true;
+        }
+
+        if (superIsPressed == true)
+        {
+            SuperMovementUpdate();   
+        }
+
+        if (superIsPressed == false) 
+        {
+            animator.SetBool("isSuperEnabled", false);
         }
     }
 
@@ -130,8 +141,6 @@ public class PlayerController : MonoBehaviour
     //Update the Movement through Fixed Update and Animation Procedures
     private void UpdateMovement() 
     {
-        
-
         if (directionChange != Vector3.zero)
         {
             SetMovement();
@@ -144,6 +153,34 @@ public class PlayerController : MonoBehaviour
         if (directionChange == Vector3.zero) 
         {
             animator.SetBool("isWalking", false);
+        }
+    }
+
+    private void SuperMovementUpdate() 
+    {
+        if (superIsPressed == true) 
+        {
+            animator.SetBool("isSuperEnabled", true);
+
+            if (directionChange != Vector3.zero)
+            {
+                SetMovement();
+                directionChange.x = Mathf.Round(directionChange.x);
+                directionChange.y = Mathf.Round(directionChange.y);
+                animator.SetFloat("moveX", directionChange.x);
+                animator.SetBool("isWalking", true);
+            }
+
+            if (directionChange == Vector3.zero)
+            {
+                animator.SetBool("isWalking", false);
+            }
+        }
+
+        if (superIsPressed == false) 
+        {
+            animator.SetBool("isSuperEnabled", false);
+            return;
         }
     }
 
@@ -188,6 +225,7 @@ public class PlayerController : MonoBehaviour
     public void CheckHealth(float deathIncrement) 
     {
         playerDeathCounter.runtimeValue += deathIncrement;
-        transform.position = playerPosition.startingPosition;
+        //transform.position = playerPosition.startingPosition;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

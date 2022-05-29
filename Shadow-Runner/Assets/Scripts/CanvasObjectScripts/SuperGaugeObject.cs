@@ -68,6 +68,7 @@ public class SuperGaugeObject : MonoBehaviour
                 deathCounter.runtimeValue = 0;
                 currentTime = 0;
                 gaugeSlider.value = 0;
+                PlayerController.instance.superIsPressed = false;
 
                 if (currentTime == 0)
                 {

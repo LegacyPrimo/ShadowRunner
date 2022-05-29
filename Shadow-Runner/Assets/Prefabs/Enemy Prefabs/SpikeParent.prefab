@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4659642881534928336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09000015, y: -0.3399992, z: 0}
+  m_LocalPosition: {x: 8.5, y: -8.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4659642881721995101}
-  m_RootOrder: 0
+  m_Father: {fileID: 4659642882120009304}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4659642881534928343
 ParticleSystem:
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 4659642881721995101}
   - component: {fileID: 4659642881721995100}
   - component: {fileID: 4659642881721995103}
-  - component: {fileID: 4659642881721995102}
+  - component: {fileID: 4869873238626515675}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Spikes
@@ -4842,8 +4842,7 @@ Transform:
   m_LocalPosition: {x: 8.41, y: -8.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4659642881534928337}
+  m_Children: []
   m_Father: {fileID: 4659642882120009304}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4925,7 +4924,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &4659642881721995102
+--- !u!114 &4869873238626515675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4934,7 +4933,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4659642881721995097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c0ffd82a71696449d7de2559b984f3, type: 3}
+  m_Script: {fileID: 11500000, guid: a5c7bffd6a93eb2409246ffbe1a82af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDamage: {fileID: 11400000, guid: b1a32e1419be4ed44963d70fb9df5d74, type: 2}
@@ -4950,7 +4949,7 @@ GameObject:
   - component: {fileID: 4659642882120009305}
   m_Layer: 0
   m_Name: SpikeParent
-  m_TagString: Untagged
+  m_TagString: Spikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4968,6 +4967,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4659642881721995101}
+  - {fileID: 4659642881534928337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

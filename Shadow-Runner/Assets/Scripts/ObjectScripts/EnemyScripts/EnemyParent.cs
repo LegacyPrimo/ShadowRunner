@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This is the Parent Class for the Enemy Objects. The methods here are generalized but can be overriden when it is needed, especially the movement of the objects.
+
+
 public class EnemyParent : MonoBehaviour
 {
     [Header("Enemy Settings")]
@@ -9,10 +12,12 @@ public class EnemyParent : MonoBehaviour
     [SerializeField] private FloatValue moveAreaValue;
     [SerializeField] private FloatValue attackAreaValue;
     [SerializeField] private FloatValue enemySpeedValue;
+    [SerializeField] private FloatValue enemyAttackValue;
 
     public float moveArea;
     public float attackArea;
     public float enemySpeed;
+    public float enemyAttack;
 
     public Animator animator;
     public Rigidbody2D rigidbody;
@@ -26,12 +31,11 @@ public class EnemyParent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         enemyTarget = GameObject.FindGameObjectWithTag("Player").transform;
         moveArea = moveAreaValue.initialValue;
         attackArea = attackAreaValue.initialValue;
         enemySpeed = enemySpeedValue.initialValue;
-
+        enemyAttack = enemyAttackValue.initialValue;
     }
 
     private void FixedUpdate()
@@ -39,6 +43,8 @@ public class EnemyParent : MonoBehaviour
         CheckEnemyDistance();
     }
 
+    //Checking Enemy Distance can be overriden especially if it is decided if we will need pathing and other things etc.
+    //It can also be noted that this is the general movement for the enemy without the pathing.
     public virtual void CheckEnemyDistance()
     {
         if (Vector3.Distance(enemyTarget.position, transform.position) <= moveArea && Vector3.Distance(enemyTarget.position, transform.position) > attackArea)
@@ -55,6 +61,7 @@ public class EnemyParent : MonoBehaviour
         }
     }
 
+    #region Setting the animation Movement for the Enemy Characters
     private void SetAnimationFloat(Vector2 vector)
     {
         animator.SetFloat("moveX", vector.x);
@@ -74,4 +81,21 @@ public class EnemyParent : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Collision Methods
+    //It is usually mainly for the Player effect, if there is still time then, enemy to enemy might come to effect in the future
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == false) 
+        {
+            PlayerController.instance.CheckHealth(enemyAttack);
+        }
+
+        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == true) 
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+    #endregion
 }

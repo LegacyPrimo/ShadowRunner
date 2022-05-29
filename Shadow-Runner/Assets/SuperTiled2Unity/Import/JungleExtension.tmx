@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="8" tileheight="8" infinite="0" nextlayerid="3" nextobjectid="11">
  <tileset firstgid="1" source="JungleTileset.tsx"/>
  <layer id="1" name="Ground" width="100" height="20">
   <data encoding="csv">
@@ -25,4 +25,30 @@
 26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26
 </data>
  </layer>
+ <objectgroup id="2" name="CollisionMask">
+  <object id="1" x="0.25" y="88.75">
+   <polygon points="0,0 0,71.5 57,71.25 56.25,39.75 55.5,40 55,23.25 47.5,23.5 47.5,15.5 39.25,15.5 39,7.25 31.25,7.25 31,-0.5"/>
+  </object>
+  <object id="2" x="128.75" y="64.75">
+   <polygon points="0,0 0,22.75 79,22.75 78.75,-0.25"/>
+  </object>
+  <object id="3" x="424.5" y="88.5" width="63" height="23.5"/>
+  <object id="4" x="512.75" y="88.5" width="71" height="24"/>
+  <object id="5" x="608.5" y="87.75" width="71.75" height="25"/>
+  <object id="6" x="57" y="129.5">
+   <polygon points="0,0 0.5,32 210.5,30.5 209.5,-1"/>
+  </object>
+  <object id="7" x="1" y="0">
+   <polygon points="0,0 -0.5,32.5 399,32 399,0"/>
+  </object>
+  <object id="8" x="401.5" y="0">
+   <polygon points="0,0 -1.5,32 398.5,32 398.5,0"/>
+  </object>
+  <object id="9" x="288.25" y="72.5">
+   <polygon points="0,0 -0.25,7.5 -8.25,7.5 -8.25,15.5 39.75,15.5 39.75,31.5 -8.25,31.5 -8.25,39.5 -24.25,39.5 -24.25,87.5 55.75,87.5 55.75,-0.5"/>
+  </object>
+  <object id="10" x="344" y="128">
+   <polygon points="0,0 0,32 456,32 456,0"/>
+  </object>
+ </objectgroup>
 </map>
