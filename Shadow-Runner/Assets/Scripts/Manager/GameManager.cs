@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public void EnableInstructionsPanel() 
     {
         instructionsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
         PlayerController.instance.playerState = PlayerState.idle;
     }
 

@@ -8,7 +8,7 @@ public class SwordCollisions : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")) 
         {
-            collision.gameObject.SetActive(false);
+            //collision.gameObject.SetActive(false);
         }
     }
 }

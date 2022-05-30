@@ -225,7 +225,11 @@ public class PlayerController : MonoBehaviour
     public void CheckHealth(float deathIncrement) 
     {
         playerDeathCounter.runtimeValue += deathIncrement;
-        //transform.position = playerPosition.startingPosition;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ResetHealth() 
+    {
+        playerDeathCounter.runtimeValue = 0;
     }
 }

@@ -9,7 +9,16 @@ public class SlimeEnemy : EnemyParent
     [SerializeField] private int currentPathPoint;
     [SerializeField] private Transform currentPathGoal;
     [SerializeField] private float roundDistance;
+    private ParticleSystem deathEffect;
+    private SpriteRenderer thisRenderer;
+    private PolygonCollider2D thisCollider;
 
+    private void Awake()
+    {
+        thisCollider = GetComponent<PolygonCollider2D>();
+        thisRenderer = GetComponent<SpriteRenderer>();
+        deathEffect = GetComponentInChildren<ParticleSystem>();
+    }
 
     public override void CheckEnemyDistance()
     {
@@ -21,16 +30,16 @@ public class SlimeEnemy : EnemyParent
             animator.SetBool("isWalking", true);
         }
 
-        if (Vector3.Distance(enemyTarget.position, transform.position) > moveArea) 
+        if (Vector3.Distance(enemyTarget.position, transform.position) > moveArea)
         {
             if (Vector3.Distance(transform.position, paths[currentPathPoint].position) > roundDistance)
             {
                 Vector3 temporary = Vector3.MoveTowards(transform.position, paths[currentPathPoint].position, enemySpeed * Time.fixedDeltaTime);
-                //SetAnimation(temporary - transform.position);
+                SetAnimation(temporary - transform.position);
+                animator.SetBool("isWalking", true);
                 rigidbody.MovePosition(temporary);
             }
-
-            else 
+            else
             {
                 ChangeIdlePathing();
             }
@@ -50,4 +59,39 @@ public class SlimeEnemy : EnemyParent
             currentPathGoal = paths[currentPathPoint];
         }
     }
+
+    private void DisableObject() 
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HitBox")) 
+        {
+            deathEffect.Play();
+            thisRenderer.enabled = false;
+            thisCollider.enabled = false;
+            Invoke("DisableObject", 0.8f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == false)
+        {
+            PlayerController.instance.CheckHealth(enemyAttack);
+        }
+
+        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == true)
+        {
+            deathEffect.Play();
+            thisRenderer.enabled = false;
+            thisCollider.enabled = false;
+            Invoke("DisableObject", 0.8f);
+        }
+
+
+    }
+
 }

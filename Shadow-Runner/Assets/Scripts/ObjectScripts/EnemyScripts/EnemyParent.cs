@@ -91,11 +91,6 @@ public class EnemyParent : MonoBehaviour
         {
             PlayerController.instance.CheckHealth(enemyAttack);
         }
-
-        if (collision.collider.CompareTag("Player") && PlayerController.instance.superIsPressed == true) 
-        {
-            this.gameObject.SetActive(false);
-        }
     }
     #endregion
 }
