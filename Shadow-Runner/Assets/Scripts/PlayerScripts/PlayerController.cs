@@ -208,12 +208,29 @@ public class PlayerController : MonoBehaviour
 
     private void EnableSwordAttack() 
     {
-        directionChange.x = Mathf.Round(directionChange.x);
-        directionChange.y = Mathf.Round(directionChange.y);
+        if (directionChange != Vector3.zero) 
+        {
+            directionChange.x = Mathf.Round(directionChange.x);
+            directionChange.y = Mathf.Round(directionChange.y);
 
-        animator.SetFloat("moveX", directionChange.x);
-        animator.SetBool("isAttacking", true);
-        StartCoroutine(DisableAttack());
+            animator.SetFloat("moveX", directionChange.x);
+            animator.SetBool("isAttacking", true);
+            StartCoroutine(DisableAttack());
+        }
+
+        if (directionChange.x < 0) 
+        {
+            animator.SetFloat("moveX", -1);
+            animator.SetBool("isAttacking", true);
+            StartCoroutine(DisableAttack());
+        }
+
+        if (directionChange == Vector3.zero) 
+        {
+            animator.SetBool("isAttacking", true);
+            StartCoroutine(DisableAttack());
+        }
+        
     }
 
     private IEnumerator DisableAttack() 

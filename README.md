@@ -16,6 +16,8 @@
  Chris M Audio for their Fantasy Menu SFX Pack = https://assetstore.unity.com/packages/audio/sound-fx/fantasy-menu-sfx-57238#publisher
  
  VGComposer for their RPG SFX Pack = https://assetstore.unity.com/packages/audio/music/action-rpg-music-free-85434#publisher
+ 
+ Dented Pixel for their Lean Tween = https://assetstore.unity.com/packages/tools/animation/leantween-3595#description
 
  Daryl Betinol for the Character Sprites
 
