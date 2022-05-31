@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba58fb949ab6254a860ec0091e28d3f, type: 3}
   m_Name: PlayerJumpValue
   m_EditorClassIdentifier: 
-  initialValue: 40
-  runtimeValue: 40
+  initialValue: 30
+  runtimeValue: 30
